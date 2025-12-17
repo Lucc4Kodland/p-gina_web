@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Primeiro Site</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00a800;
+            font-family: Georgia, serif;
+        }
+
+        h2 {
+            color: #0066cc;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #00a800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #008000;
+        }
+
+        .caixa {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* MEMES */
+        .meme {
+            text-align: center;
+            display: none;
+        }
+
+        .meme img {
+            width: 25%;        /* 25% do tamanho */
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Meu Primeiro Documento HTML</h1>
+
+    <p>
+        Olá, mundo! Este é o meu primeiro documento HTML.
+    </p>
+
+    <h2>Aprendendo HTML e CSS</h2>
+
+    <p>
+        Estou aprendendo a criar páginas web e deixá-las mais bonitas usando CSS.
+    </p>
+
+    <div class="caixa">
+        <h2>O que já aprendemos</h2>
+        <ul>
+            <li>Estrutura básica do HTML</li>
+            <li>Uso de títulos e parágrafos</li>
+            <li>Estilização com CSS</li>
+        </ul>
+    </div>
+
+    <div class="caixa">
+        <h2>Quem nos ajudou</h2>
+        <p>
+            Este site foi feito com os conhecimentos que aprendemos na
+            <a href="https://kodland.org/br" target="_blank">Kodland</a>,
+            que nos ajudou a dar os primeiros passos na programação.
+        </p>
+    </div>
+
+    <div class="caixa">
+        <h2>Interação</h2>
+        <button onclick="mostrarMemes()">
+            Mostrar memes 😂
+        </button>
+    </div>
+
+    <div class="caixa meme" id="memes">
+        <h2>Memes de Programação</h2>
+
+        <p>Quando o código funciona sem saber o porquê:</p>
+        <img src="https://i.imgflip.com/30b1gx.jpg" alt="Meme programação">
+
+        <p>Quando aparece um erro e você só adiciona mais console.log:</p>
+        <img src="https://i.imgflip.com/1bij.jpg" alt="Meme erro no código">
+    </div>
+
+    <footer>
+        © 2025 - Projeto criado com apoio da Kodland
+    </footer>
+
+    <script>
+        function mostrarMemes() {
+            document.getElementById("memes").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
