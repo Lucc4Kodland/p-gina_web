@@ -1,168 +1,241 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Meu Primeiro Site</title>
+<meta charset="UTF-8">
+<title>Meu Primeiro Site</title>
 
-    <!-- Fonte Changa -->
-    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Changa', Arial, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
+<style>
+/* ================= BASE ================= */
+body {
+    font-family: 'Changa', Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f4ff, #ffffff);
+    color: #1f2937;
+    padding: 20px;
+    transition: background 0.6s ease, color 0.6s ease;
+}
 
-        body.claro {
-            background-color: #f0f0f0;
-            color: #333333;
-        }
+body.escuro {
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: #e5e7eb;
+}
 
-        h1 {
-            color: #00ff7f;
-        }
+/* ================= H1 (PROFISSIONAL) ================= */
+h1 {
+    animation: color-change 12s ease-in-out infinite;
+}
 
-        body.claro h1 {
-            color: #00a800;
-        }
+@keyframes color-change {
+    0%   { color: #1d4ed8; }
+    50%  { color: #ff0202; }
+    100% { color: #1d4ed8; }
+}
 
-        h2 {
-            color: #66ccff;
-        }
+/* ================= CAIXAS ================= */
+.caixa {
+    background-color: rgba(255,255,255,0.9);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: background-color 0.6s ease;
+}
 
-        body.claro h2 {
-            color: #0066cc;
-        }
+body.escuro .caixa {
+    background-color: rgba(15,23,42,0.9);
+}
 
-        p, li {
-            line-height: 1.6;
-        }
+/* ================= SWITCH COM INDICAÇÃO ================= */
+.switch-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
 
-        button {
-            background-color: #00a800;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-family: 'Changa', Arial, sans-serif;
-            margin-right: 10px;
-        }
+.switch {
+    position: relative;
+    width: 100px;
+    height: 46px;
+}
 
-        button:hover {
-            background-color: #008000;
-        }
+.switch input {
+    display: none;
+}
 
-        .caixa {
-            background-color: #111111;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.05);
-            transition: background-color 0.3s;
-        }
+.slider {
+    position: absolute;
+    inset: 0;
+    background-color: #e0e7ff;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: 0.4s;
+}
 
-        body.claro .caixa {
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+/* ícones */
+.slider span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+}
 
-        .meme {
-            text-align: center;
-            display: none;
-        }
+.sun {
+    left: 12px;
+}
 
-        .meme img {
-            width: 25%;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
+.moon {
+    right: 12px;
+}
 
-        a {
-            color: #00bfff;
-        }
+/* bolinha */
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 34px;
+    width: 34px;
+    left: 6px;
+    top: 6px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
 
-        body.claro a {
-            color: #0066cc;
-        }
+/* modo escuro */
+input:checked + .slider {
+    background-color: #2563eb;
+}
 
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: #aaaaaa;
-        }
+input:checked + .slider::before {
+    transform: translateX(52px);
+}
 
-        body.claro footer {
-            color: #666666;
-        }
-    </style>
+/* ================= BOTÃO MEMES ================= */
+.meme-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.meme-btn:hover {
+    background-color: #1e40af;
+}
+
+/* ================= MEMES ================= */
+.meme {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.6s ease, max-height 0.6s ease;
+    text-align: center;
+}
+
+.meme.ativo {
+    opacity: 1;
+    max-height: 1000px;
+}
+
+.meme img {
+    width: 25%;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+/* ================= LINKS ================= */
+a {
+    color: #2563eb;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+}
+</style>
 </head>
 
 <body>
 
-    <h1>Meu Primeiro Documento HTML</h1>
+<div class="switch-area">
+    <label class="switch">
+        <input type="checkbox" onchange="alternarTema()">
+        <div class="slider">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+        </div>
+    </label>
+</div>
 
+<h1>Meu Primeiro Documento HTML</h1>
+
+<p>Olá, mundo! Este é o meu primeiro documento HTML.</p>
+
+<div class="caixa">
+    <h2>O que já aprendemos</h2>
+    <ul>
+        <li>HTML básico</li>
+        <li>CSS e cores</li>
+        <li>Animações</li>
+    </ul>
+</div>
+
+<div class="caixa">
+    <h2>Quem nos ajudou</h2>
     <p>
-        Olá, mundo! Este é o meu primeiro documento HTML.
+        Projeto feito com apoio da
+        <a href="https://www.kodland.org/pt" target="_blank">Kodland</a>.
     </p>
+</div>
 
-    <h2>Aprendendo HTML e CSS</h2>
+<div class="caixa">
+    <button class="meme-btn" onclick="toggleMemes()">Mostrar / Esconder memes 😂</button>
 
-    <p>
-        Estou aprendendo a criar páginas web e deixá-las mais bonitas usando CSS.
-    </p>
-
-    <!-- BOTÕES -->
-    <div class="caixa">
-        <button onclick="alternarTema()">🌙 / ☀️ Mudar tema</button>
-        <button onclick="mostrarMemes()">Mostrar memes 😂</button>
-    </div>
-
-    <div class="caixa">
-        <h2>O que já aprendemos</h2>
-        <ul>
-            <li>Estrutura básica do HTML</li>
-            <li>Uso de títulos e parágrafos</li>
-            <li>Estilização com CSS</li>
-        </ul>
-    </div>
-
-    <div class="caixa">
-        <h2>Quem nos ajudou</h2>
-        <p>
-            Este site foi feito com os conhecimentos que aprendemos na
-            <a href="https://kodland.org/pt" target="_blank">Kodland</a>.
-        </p>
-    </div>
-
-    <div class="caixa meme" id="memes">
-        <h2>Memes de Programação</h2>
-
+    <div class="meme" id="memes">
         <p>Quando o código funciona sem saber o porquê:</p>
         <img src="https://i.imgflip.com/30b1gx.jpg">
 
-        <p>Quando aparece um erro e você só adiciona mais console.log:</p>
+        <p>Quando tudo vira console.log:</p>
         <img src="https://i.imgflip.com/1bij.jpg">
     </div>
 
-    <footer>
-        © 2025 - Projeto criado com apoio da Kodland
-    </footer>
 
-    <script>
-        function mostrarMemes() {
-            document.getElementById("memes").style.display = "block";
-        }
+    <div class="caixa">
+    <h2>Previsão do Tempo 🌤️</h2>
 
-        function alternarTema() {
-            document.body.classList.toggle("claro");
-        }
-    </script>
+    <iframe 
+      src="https://www.meteoblue.com/pt/tempo/widget/daily/s%c3%a3o-paulo_brasil_3448439?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=monochrome&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&windgust=1&winddirection=1&uv=1&humidity=1&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light&user_key=8961c99bbedaa1f0&embed_key=9896fd5578938861&sig=25ecda57e19945195d544515996a3dd32cbaa91694c0902fa9720c6285b78dc3"
+      width="200"
+      height="300"
+      frameborder="0">
+    </iframe>
+
+    <p style="font-size:12px; opacity:0.7;">
+        Fonte: <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank">meteoblue</a>
+    </p>
+</div>
+
+
+</div>
+
+<footer>
+    © 2025 - Projeto educacional Kodland
+</footer>
+
+<script>
+function alternarTema() {
+    document.body.classList.toggle("escuro");
+}
+
+function toggleMemes() {
+    document.getElementById("memes").classList.toggle("ativo");
+}
+</script>
 
 </body>
 </html>
-
